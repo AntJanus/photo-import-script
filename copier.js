@@ -9,7 +9,7 @@ export const copyPhotos = ({
   dryRun,
   format
 }) => {
-  log("creating directory", output);
+  log("creating output directory", output);
   if (dryRun !== true) {
     mkdirSync(output, { recursive: true });
   }
@@ -28,17 +28,14 @@ export const copyPhotos = ({
     const metadata = statSync(fullPath);
     const createdAt = new Date(metadata.ctime);
 
-    log("Creating folder: ", formatDate(createdAt));
-    const folderName = formatDate(createdAt);
-    const folderPath = path.resolve(output, folderName);
+    const dateObj = formatDate(createdAt);
+    const folderPath = path.resolve(output, dateObj[0], dateObj[1], dateObj.join(""));
 
     if (dryRun !== true) {
       mkdirSync(folderPath, { recursive: true });
     }
 
     const filePath = path.resolve(folderPath, file.name);
-
-    log("Copying file", file.name, "to path", filePath);
 
     if (dryRun !== true) {
       copyFileSync(fullPath, filePath);
