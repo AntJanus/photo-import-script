@@ -1,7 +1,4 @@
 import { parseArgs } from "node:util";
-import path from "node:path";
-import { mkdirSync, readdirSync, copyFileSync, statSync } from "node:fs";
-import formatDate from './date-formatter.js';
 import log from './logger.js';
 import { copyPhotos } from './copier.js';
 

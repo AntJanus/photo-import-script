@@ -4,11 +4,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "cli": "node cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Antonin Januska",
-  "license": "private",
+  "private": "true",
   "description": "",
   "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
