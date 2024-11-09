@@ -1,14 +1,9 @@
-import log from './logger.js';
+import log from "./logger.js";
 import path from "node:path";
 import { mkdirSync, readdirSync, copyFileSync, statSync } from "node:fs";
-import formatDate from './date-formatter.js';
+import formatDate from "./date-formatter.js";
 
-export const copyPhotos = ({
-  input,
-  output,
-  dryRun,
-  format
-}) => {
+export const copyPhotos = ({ input, output, dryRun, format }) => {
   log("creating output directory", output);
   if (dryRun !== true) {
     mkdirSync(output, { recursive: true });
@@ -26,10 +21,15 @@ export const copyPhotos = ({
   for (const file of allFiles) {
     const fullPath = path.resolve(file.path, file.name);
     const metadata = statSync(fullPath);
-    const createdAt = new Date(metadata.ctime);
+    const createdAt = new Date(metadata.mtime);
 
     const dateObj = formatDate(createdAt);
-    const folderPath = path.resolve(output, dateObj[0], dateObj[1], dateObj.join(""));
+    const folderPath = path.resolve(
+      output,
+      dateObj[0],
+      dateObj[1],
+      dateObj.join(""),
+    );
 
     if (dryRun !== true) {
       mkdirSync(folderPath, { recursive: true });
@@ -43,4 +43,4 @@ export const copyPhotos = ({
   }
 
   log("Finished copying files", new Date());
-}
+};
