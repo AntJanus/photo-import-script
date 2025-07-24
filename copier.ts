@@ -3,13 +3,25 @@ import path from "node:path";
 import { mkdirSync, readdirSync, copyFileSync, statSync } from "node:fs";
 import formatDate from "./date-formatter.js";
 
-export const copyPhotos = ({ input, output, dryRun, format }) => {
+interface CopyPhotosOptions {
+  input?: string;
+  output?: string;
+  dryRun?: boolean;
+  format?: string;
+}
+
+export const copyPhotos = ({ input, output, dryRun, format }: CopyPhotosOptions): void => {
   log("creating output directory", output);
-  if (dryRun !== true) {
+  if (dryRun !== true && output) {
     mkdirSync(output, { recursive: true });
   }
 
   log("Reading input", input);
+  if (!input) {
+    log("No input directory specified");
+    return;
+  }
+
   const allFiles = readdirSync(input, {
     withFileTypes: true,
     recursive: true,
@@ -25,7 +37,7 @@ export const copyPhotos = ({ input, output, dryRun, format }) => {
 
     const dateObj = formatDate(createdAt);
     const folderPath = path.resolve(
-      output,
+      output || "",
       dateObj[0],
       dateObj[1],
       dateObj.join(""),
