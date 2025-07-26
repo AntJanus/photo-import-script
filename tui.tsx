@@ -6,10 +6,10 @@ const App = () => {
   return (
     <>
       <Text bold>Photo Importer TUI</Text>
-      <Box>
-        <Box>
-          <Text>What photos would you like to import?</Text>
-        </Box>
+      <Box marginTop={1}>
+        <Text>What photos would you like to import?</Text>
+      </Box>
+      <Box flexDirection="column" gap={2}>
         <Box>
           <Text>Source folder:</Text>
         </Box>
