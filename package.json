@@ -6,6 +6,7 @@
   "license": "private",
   "scripts": {
     "cli": "tsx cli.ts",
+    "tui": "tsx tui.tsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
