@@ -1,6 +1,6 @@
 import { parseArgs } from "node:util";
-import log from './logger.js';
-import { copyPhotos } from './copier.js';
+import log from './lib/logger.js';
+import { copyPhotos } from './lib/copier.js';
 
 function showHelp(): void {
   console.log(`
