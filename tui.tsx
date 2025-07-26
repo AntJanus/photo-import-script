@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { render, Text, Box, useInput } from 'ink';
-import { TextInput } from '@inkjs/ui';
+import { ConfirmInput, TextInput } from '@inkjs/ui';
 import { copyPhotos } from './lib/copier.js';
 
 const SelectSource = ({ setSourcePath }) => {
@@ -35,7 +35,7 @@ const SelectDestination = ({ setDestinationPath }) => {
   );
 };
 
-const SelectDryrun = ({ setDryRun }) => {
+const SelectDryRun = ({ setDryRun }) => {
   return (
     <>
       <Box>
@@ -83,7 +83,12 @@ const App = () => {
       <Box marginTop={1}>
         <Text>What photos would you like to import?</Text>
       </Box>
-      <Box flexDirection="column" gap={1}></Box>
+      <Box flexDirection="column" gap={1}>
+        <SelectSource />
+        <SelectDestination />
+        <SelectDryRun />
+        <ConfirmRun />
+      </Box>
     </>
   );
 };
