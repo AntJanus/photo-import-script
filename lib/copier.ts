@@ -1,7 +1,7 @@
-import { log } from "./logger.js";
-import path from "node:path";
-import { mkdirSync, readdirSync, copyFileSync, statSync } from "node:fs";
-import { formatDate } from "./date-formatter.js";
+import { log } from './logger.js';
+import path from 'node:path';
+import { mkdirSync, readdirSync, copyFileSync, statSync } from 'node:fs';
+import { formatDate } from './date-formatter.js';
 
 interface CopyPhotosOptions {
   input?: string;
@@ -10,15 +10,20 @@ interface CopyPhotosOptions {
   format?: string;
 }
 
-export const copyPhotos = ({ input, output, dryRun, format }: CopyPhotosOptions): void => {
-  log("creating output directory", output);
+export const copyPhotos = ({
+  input,
+  output,
+  dryRun,
+  format,
+}: CopyPhotosOptions): void => {
+  log('creating output directory', output);
   if (dryRun !== true && output) {
     mkdirSync(output, { recursive: true });
   }
 
-  log("Reading input", input);
+  log('Reading input', input);
   if (!input) {
-    log("No input directory specified");
+    log('No input directory specified');
     return;
   }
 
@@ -27,9 +32,9 @@ export const copyPhotos = ({ input, output, dryRun, format }: CopyPhotosOptions)
     recursive: true,
   });
 
-  log("Read: ", allFiles.length, "files from directory");
+  log('Read: ', allFiles.length, 'files from directory');
 
-  log("Copying files...", new Date());
+  log('Copying files...', new Date());
   for (const file of allFiles) {
     const fullPath = path.resolve(file.parentPath, file.name);
     const metadata = statSync(fullPath);
@@ -37,10 +42,10 @@ export const copyPhotos = ({ input, output, dryRun, format }: CopyPhotosOptions)
 
     const dateObj = formatDate(createdAt);
     const folderPath = path.resolve(
-      output || "",
+      output || '',
       dateObj[0],
       dateObj[1],
-      dateObj.join(""),
+      dateObj.join('')
     );
 
     if (dryRun !== true) {
@@ -54,5 +59,5 @@ export const copyPhotos = ({ input, output, dryRun, format }: CopyPhotosOptions)
     }
   }
 
-  log("Finished copying files", new Date());
+  log('Finished copying files', new Date());
 };

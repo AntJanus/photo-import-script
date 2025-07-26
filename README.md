@@ -36,11 +36,13 @@ yarn cli -i <input-directory> -o <output-directory> [options]
 ### Examples
 
 **Basic usage:**
+
 ```bash
 yarn cli -i ./unsorted-photos -o ./organized-photos
 ```
 
 **Dry run to preview changes:**
+
 ```bash
 yarn cli -i ./unsorted-photos -o ./organized-photos -d
 ```

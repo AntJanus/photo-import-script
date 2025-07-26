@@ -1,4 +1,4 @@
-import { parseArgs } from "node:util";
+import { parseArgs } from 'node:util';
 import { log } from './lib/logger';
 import { showHelp } from './lib/help';
 import { copyPhotos } from './lib/copier';
@@ -10,24 +10,24 @@ const [, , cliArgs] = args;
 const { values } = parseArgs({
   options: {
     input: {
-      type: "string",
-      short: "i",
+      type: 'string',
+      short: 'i',
     },
     output: {
-      type: "string",
-      short: "o",
+      type: 'string',
+      short: 'o',
     },
     format: {
-      type: "string",
-      short: "f",
+      type: 'string',
+      short: 'f',
     },
     dryRun: {
-      type: "boolean",
-      short: "d",
+      type: 'boolean',
+      short: 'd',
     },
     help: {
-      type: "boolean",
-      short: "h",
+      type: 'boolean',
+      short: 'h',
     },
   },
 });
@@ -43,11 +43,11 @@ if (help) {
   process.exit(0);
 }
 
-log('Is dry run?', !!dryRun)
+log('Is dry run?', !!dryRun);
 
 copyPhotos({
   input,
   output,
   format,
-  dryRun
-})
+  dryRun,
+});
