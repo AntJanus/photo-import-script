@@ -1,74 +1,10 @@
 import React, { useState } from 'react';
 import { render, Text, Box, useInput } from 'ink';
-import { ConfirmInput, TextInput } from '@inkjs/ui';
 import { copyPhotos } from './lib/copier.js';
-
-const SelectSource = ({ setSourcePath }) => {
-  return (
-    <>
-      <Box>
-        <Text>Source folder:</Text>
-        <TextInput
-          placeholder="Source folder"
-          onSubmit={(val) => {
-            setSourcePath(val);
-          }}
-        />
-      </Box>
-    </>
-  );
-};
-
-const SelectDestination = ({ setDestinationPath }) => {
-  return (
-    <>
-      <Box>
-        <Text>Destination folder:</Text>
-        <TextInput
-          placeholder="Destination folder"
-          onSubmit={(val) => {
-            setDestinationPath(val);
-          }}
-        />
-      </Box>
-    </>
-  );
-};
-
-const SelectDryRun = ({ setDryRun }) => {
-  return (
-    <>
-      <Box>
-        <Text>Is this a dry run?</Text>
-        <ConfirmInput
-          onConfirm={() => {
-            setDryRun(true);
-          }}
-          onCancel={() => {
-            setDryRun(false);
-          }}
-        />
-      </Box>
-    </>
-  );
-};
-
-const ConfirmRun = ({ onConfirm }) => {
-  return (
-    <>
-      <Box>
-        <Text>Are you sure you want to import photos?</Text>
-        <ConfirmInput
-          onConfirm={onConfirm}
-          onCancel={() => {
-            console.log('Action cancelled');
-            process.exit(0);
-          }}
-        />
-      </Box>
-    </>
-  );
-};
+import { SelectSource } from './tui-components/SelectSource.js';
+import { SelectDestination } from './tui-components/SelectDestination.js';
+import { SelectDryRun } from './tui-components/SelectDryRun.js';
+import { ConfirmRun } from './tui-components/ConfirmRun.js';
 
 const App = () => {
   useInput((input, key) => {
