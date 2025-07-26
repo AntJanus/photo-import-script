@@ -1,6 +1,6 @@
 import { parseArgs } from "node:util";
-import log from './lib/logger';
-import { showHelp } from './lib/showHelp';
+import { log } from './lib/logger';
+import { showHelp } from './lib/help';
 import { copyPhotos } from './lib/copier';
 
 const args = process.argv;
@@ -43,7 +43,7 @@ if (help) {
   process.exit(0);
 }
 
-log('Is dry run?', dryRun)
+log('Is dry run?', !!dryRun)
 
 copyPhotos({
   input,

@@ -1,4 +1,4 @@
-const formatDate = (date: Date): string[] => {
+export function formatDate(date: Date): string[] {
   const d = new Date(date);
   let month = "" + (d.getMonth() + 1);
   let day = "" + d.getDate();
@@ -8,6 +8,4 @@ const formatDate = (date: Date): string[] => {
   if (day.length < 2) day = "0" + day;
 
   return [year, month, day];
-};
-
-export default formatDate;
+}

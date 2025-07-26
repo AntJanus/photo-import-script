@@ -1,4 +1,4 @@
-import log from './logger';
+import { log } from './logger';
 
 export function showHelp(): void {
   log(`

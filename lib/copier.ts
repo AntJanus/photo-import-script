@@ -1,7 +1,7 @@
-import log from "./logger.js";
+import { log } from "./logger.js";
 import path from "node:path";
 import { mkdirSync, readdirSync, copyFileSync, statSync } from "node:fs";
-import formatDate from "./date-formatter.js";
+import { formatDate } from "./date-formatter.js";
 
 interface CopyPhotosOptions {
   input?: string;
@@ -31,7 +31,7 @@ export const copyPhotos = ({ input, output, dryRun, format }: CopyPhotosOptions)
 
   log("Copying files...", new Date());
   for (const file of allFiles) {
-    const fullPath = path.resolve(file.path, file.name);
+    const fullPath = path.resolve(file.parentPath, file.name);
     const metadata = statSync(fullPath);
     const createdAt = new Date(metadata.mtime);
 
