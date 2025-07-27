@@ -2,17 +2,15 @@ import React from 'react';
 import { Text, Box } from 'ink';
 import { ConfirmInput } from '@inkjs/ui';
 
-interface ConfirmRunProps {
-  onConfirm: () => void;
-}
-
-export const ConfirmRun = ({ onConfirm }: ConfirmRunProps) => {
+export const ConfirmRun = ({ data, onUpdate, onNext }) => {
   return (
     <>
       <Box>
-        <Text>Are you sure you want to import photos?</Text>
         <ConfirmInput
-          onConfirm={onConfirm}
+          onConfirm={() => {
+            onUpdate('shouldRun', true);
+            onNext();
+          }}
           onCancel={() => {
             console.log('Action cancelled');
             process.exit(0);

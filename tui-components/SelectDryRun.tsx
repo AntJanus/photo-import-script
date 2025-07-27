@@ -2,21 +2,18 @@ import React from 'react';
 import { Text, Box } from 'ink';
 import { ConfirmInput } from '@inkjs/ui';
 
-interface SelectDryRunProps {
-  setDryRun: (dryRun: boolean) => void;
-}
-
-export const SelectDryRun = ({ setDryRun }: SelectDryRunProps) => {
+export const SelectDryRun = ({ data, onUpdate, onNext }) => {
   return (
     <>
       <Box>
-        <Text>Is this a dry run?</Text>
         <ConfirmInput
           onConfirm={() => {
-            setDryRun(true);
+            onUpdate('isDryRun', true);
+            onNext();
           }}
           onCancel={() => {
-            setDryRun(false);
+            onUpdate('isDryRun', false);
+            onNext();
           }}
         />
       </Box>
