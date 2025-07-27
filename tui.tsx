@@ -43,11 +43,19 @@ const App = () => {
   });
 
   if (formData.shouldRun) {
-    copyPhotos({
-      input: formData.sourcePath,
-      output: formData.destinationPath,
-      dryRun: formData.isDryRun,
-    })
+    console.log('Form data: ', formData)
+    try { 
+      copyPhotos({
+        input: formData.sourcePath,
+        output: formData.destinationPath,
+        dryRun: formData.isDryRun,
+      })
+    } catch(e) {
+      return <>
+        <Text>{e.message}</Text>
+      </>
+    }
+
     return (
       <>
         <Text>Run!</Text>

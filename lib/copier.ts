@@ -1,5 +1,6 @@
 import { log } from './logger.js';
 import path from 'node:path';
+import untildify from 'untildify';
 import { mkdirSync, readdirSync, copyFileSync, statSync } from 'node:fs';
 import { formatDate } from './date-formatter.js';
 
@@ -27,7 +28,8 @@ export const copyPhotos = ({
     return;
   }
 
-  const allFiles = readdirSync(input, {
+  const inputPath = path.resolve(untildify(input));
+  const allFiles = readdirSync(inputPath, {
     withFileTypes: true,
     recursive: true,
   });
