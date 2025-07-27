@@ -43,6 +43,11 @@ const App = () => {
   });
 
   if (formData.shouldRun) {
+    copyPhotos({
+      input: formData.sourcePath,
+      output: formData.destinationPath,
+      dryRun: formData.isDryRun,
+    })
     return (
       <>
         <Text>Run!</Text>
