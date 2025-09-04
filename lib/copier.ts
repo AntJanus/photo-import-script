@@ -17,9 +17,12 @@ export const copyPhotos = ({
   dryRun,
   format,
 }: CopyPhotosOptions): void => {
-  log('creating output directory', output);
-  if (dryRun !== true && output) {
-    mkdirSync(output, { recursive: true });
+  const outputPath = path.resolve(untildify(output));
+  const inputPath = path.resolve(untildify(input));
+
+  log('creating output directory', outputPath);
+  if (dryRun !== true && outputPath) {
+    mkdirSync(outputPath, { recursive: true });
   }
 
   log('Reading input', input);
@@ -28,7 +31,6 @@ export const copyPhotos = ({
     return;
   }
 
-  const inputPath = path.resolve(untildify(input));
   const allFiles = readdirSync(inputPath, {
     withFileTypes: true,
     recursive: true,
@@ -44,7 +46,7 @@ export const copyPhotos = ({
 
     const dateObj = formatDate(createdAt);
     const folderPath = path.resolve(
-      output || '',
+      outputPath || '',
       dateObj[0],
       dateObj[1],
       dateObj.join('')
